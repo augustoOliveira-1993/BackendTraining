@@ -1,0 +1,24 @@
+{
+  "name": "backendtraining",
+  "version": "0.0.1",
+  "description": "Project with nodejs and express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Artrogeno/BackendTraining.git"
+  },
+  "keywords": [
+    "Node",
+    "NodeJs",
+    "Express"
+  ],
+  "author": "Arthur Costa da Silva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Artrogeno/BackendTraining/issues"
+  },
+  "homepage": "https://github.com/Artrogeno/BackendTraining#readme"
+}

@@ -4,7 +4,7 @@
   "description": "Project with nodejs and express",
   "main": "index.js",
   "scripts": {
-    "ex": "node examples/01/helloworld.js",
+    "start": "node examples/02/fs.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

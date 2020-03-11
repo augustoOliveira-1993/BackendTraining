@@ -32,7 +32,24 @@ const resource = (params, data = null) => {
   });
 };
 
-module.exports = { getTypicode, resource };
+const postPost = data => {
+  const url = URL_BASE + "/posts";
+  const params = {
+    body: JSON.stringify(data),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  };
+
+  return new Promise((resolve, reject) => {
+    request.post(url, params, (err, { statusCode, statusMessage }, body) => {
+      if (err) return reject(err);
+      resolve({ body: JSON.parse(body), statusCode, statusMessage });
+    });
+  });
+};
+
+module.exports = { getTypicode, resource, postPost };
 
 // GET	/posts
 // GET	/posts/1

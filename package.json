@@ -4,7 +4,7 @@
   "description": "Project with nodejs and express",
   "main": "index.js",
   "scripts": {
-    "start": "node examples/03/index.js",
+    "start": "node examples/04/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +24,8 @@
   "homepage": "https://github.com/Artrogeno/BackendTraining#readme",
   "dependencies": {
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.28"
+    "moment-timezone": "^0.5.28",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
   }
 }

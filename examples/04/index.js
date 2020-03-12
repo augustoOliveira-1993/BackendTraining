@@ -16,7 +16,25 @@ const post = async () => {
   }
 };
 
-post();
+const put = async (data, id) => {
+  try {
+    const result = await httpServer.putPost(data, id);
+    console.log("RESPONSE PUT::", result);
+  } catch (error) {
+    console.log("ERROR PUT:: ", error);
+  }
+};
+
+const _delete = async id => {
+  try {
+    const result = await httpServer.deletePost(id);
+    console.log("RESPONSE DELETE: ", result);
+  } catch (error) {
+    console.log("ERROR DELETE: ", error);
+  }
+};
+
+_delete("test");
 
 // httpServer
 //   .getTypicode()

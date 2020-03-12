@@ -15,23 +15,6 @@ function getTypicode() {
   });
 }
 
-const resource = (params, data = null) => {
-  return new Promise((resolve, reject) => {
-    if (params) {
-      request(
-        { ...params, uri: `${URL_BASE}/${params.uri}` },
-        (error, { statusCode, statusMessage }, data) => {
-          let response = { statusCode, statusMessage };
-          if (error || [404, 500].includes(statusCode)) return reject(response);
-          resolve({ ...response, data: JSON.parse(data) });
-        }
-      );
-    } else {
-      reject("NOT FOUND PARAMS");
-    }
-  });
-};
-
 const postPost = data => {
   const url = URL_BASE + "/posts";
   const params = {
@@ -49,7 +32,57 @@ const postPost = data => {
   });
 };
 
-module.exports = { getTypicode, resource, postPost };
+const putPost = (data, id) => {
+  return new Promise((resolve, reject) => {
+    if (!id) return reject("NOT FOUND ID");
+
+    const uri = `${URL_BASE}/posts/${id}`;
+    const body = JSON.stringify(data);
+    const headers = { "Content-type": "application/json; charset=UTF-8" };
+
+    request.put(uri, { body, headers }, (err, res, body) => {
+      const { statusCode } = res;
+
+      if (err) return reject({ statusCode, message: JSON.parse(err) });
+
+      resolve({ statusCode, body: JSON.parse(body) });
+    });
+  });
+};
+
+const deletePost = id => {
+  return new Promise((resolve, reject) => {
+    if (!id) return reject("NOT FOUND ID");
+
+    const uri = `${URL_BASE}/posts/${id}`;
+
+    request.delete(uri, (err, res, body) => {
+      const { statusCode } = res;
+      if (err) return reject({ statusCode, error: JSON.parse(err) });
+
+      resolve({ statusCode, body: JSON.parse(body) });
+    });
+  });
+};
+
+const resource = (params, data = null) => {
+  return new Promise((resolve, reject) => {
+    if (params) {
+      request(
+        { ...params, uri: `${URL_BASE}/${params.uri}` },
+        (error, { statusCode, statusMessage }, data) => {
+          let response = { statusCode, statusMessage };
+          if (error || [404, 500].includes(statusCode)) return reject(response);
+          resolve({ ...response, data: JSON.parse(data) });
+        }
+      );
+    } else {
+      reject("NOT FOUND PARAMS");
+    }
+  });
+};
+
+module.exports = { getTypicode, resource, postPost, putPost, deletePost };
 
 // GET	/posts
 // GET	/posts/1
